@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
   <head>
     <style>
@@ -167,28 +168,77 @@ form .signup-link a:hover{
   <nav id="id1" class="topnav">
      <a href="home.php">HOME</a>
 </nav>
-    <?php
+<?php
+
+$user='root';
+$pass='';
+$db='miniproject';
+
+$dbcon=mysqli_connect('localhost',$user,$pass,"$db");
+if(!$dbcon){
+    die('could not connect to mysql server:');
+}
+
+    if(isset($_POST['button'])){
+
+      $vadminid2="";
+      $vpassword2="";
+
+      // echo "hi";
+
+        $vadminid=$_POST['adminid'];
+
+        $vpassword=$_POST['password'];
+
+        // if(mysqli_query($dbcon,$query)){
+    
+         $vadminid2="admin";
+         $vpassword2="9198";
+        if($vadminid2==$vadminid && $vpassword2==$vpassword)
+        {
+          // $query="INSERT INTO adminids(adminid) VALUES ('$vadminid')";
+          // if(mysqli_query($dbcon,$query)){
+
+          // echo '<script> alert("LOGIN Successfully")</script>';
+
+          header("Location:adminhome.php");
+          // }
+          }
+          else{
+            // echo "hi";
+           echo '<script> alert("wrong Admin ID or password")</script>';
+          }
+          
+        }
+       
+      
+    
+   
+        mysqli_close($dbcon);
+   
     ?>
     <div class="wrapper">
       <div class="title">Admin Login</div>
-      <form action="#" name="myform">
+      <form action="" name="myform" method="POST">
         <div class="field">
-          <input type="text" id="adminid" required>
+          <input type="text" name="adminid" required>
           <label>Admin ID</label>
         </div>
         <div class="field">
-          <input type="password" id="password" required>
+          <input type="password" name="password" required>
           <label>Password</label>
         </div>
        
-          </div>
+          <!-- </div> -->
+          <div class="field">
+        <!-- <button id="button">LOGIN</button> -->
+        <input type="submit" value="LOGIN" name="button">
+</div>
          
        
        
       </form>
-      <div class="field">
-        <button id="button">LOGIN</button>
-      </div>
+      
     </div>
     
   </body>
